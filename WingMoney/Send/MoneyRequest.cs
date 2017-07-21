@@ -5,31 +5,31 @@ namespace WingMoney.Send
 {
     /// <summary>
     /// {
-    ///     "amount":30,
     ///     "currency": "USD",
-    ///     "receiver_account" : "00499973"
+    ///     "amount": 5,
+    ///     "receiver_account": "00009911"
     /// }
     /// </summary>
     public class MoneyRequest
     {
 
         /// <summary>
-        /// Receiver Wing Account number
+        /// KHR or USD (base on Payer’s currency)
         /// </summary>
-        [JsonProperty(PropertyName = "wing_account")]
-        public string WingAccount { get; set; }
+        [JsonProperty(PropertyName = "currency")]
+        public string Currency { get; set; }
 
         /// <summary>
-        /// Wallet currency (KHR / USD)
+        /// Amount to be transfer
         /// </summary>
-        [JsonProperty(PropertyName = "wallet_currency")]
-        public string WalletCurrency { get; set; }
+        [JsonProperty(PropertyName = "amount")]
+        public string Amount { get; set; }
 
         /// <summary>
-        /// Wing Account name
+        /// Receiver’s wing account
         /// </summary>
-        [JsonProperty(PropertyName = "account_name")]
-        public string AccountName { get; set; }
+        [JsonProperty(PropertyName = "receiver_account")]
+        public string ReceiverAccount { get; set; }
 
     }
 }

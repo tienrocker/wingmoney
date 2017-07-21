@@ -18,5 +18,7 @@
         public const string url_user_currency = "/api/v1/user/currency/{0}";
 
         public const string url_user_balance = "/api/v1/user/info";
+
+        public const string url_sendmoney = "/api/v1/sendmoney/wing/commit";
     }
 }

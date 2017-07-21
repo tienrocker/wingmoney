@@ -194,9 +194,40 @@ namespace WingMoney
             return null;
         }
 
-        public MoneyResponse SendMoney(string wing_account)
+        public MoneyResponse SendMoney(string wing_account, string amount, string currency = "USD")
         {
-            throw new NotImplementedException();
+            try
+            {
+                var ltoken = GetToken();
+                if (ltoken == null) { Console.WriteLine("Empty Token"); return null; }
+
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(WingSettings.url_callback + WingSettings.url_sendmoney);
+                httpWebRequest.Headers.Add("Authorization", String.Format("Bearer {0}", ltoken.AccessToken));
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "POST";
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    Send.MoneyRequest data = new Send.MoneyRequest() { Currency = currency, Amount = amount, ReceiverAccount = wing_account };
+                    string content = JsonConvert.SerializeObject(data);
+                    Console.WriteLine(content);
+                    streamWriter.Write(content);
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var resultJSON = streamReader.ReadToEnd();
+                    Send.MoneyResponse validate = JsonConvert.DeserializeObject<Send.MoneyResponse>(resultJSON);
+                    return validate;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return null;
         }
     }
 }
