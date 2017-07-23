@@ -37,7 +37,7 @@ namespace WingMoney
         private Auth.TokenResponse _token = null;
         public TokenResponse GetToken()
         {
-            if (_token != null && _token.ExpiresTime <= Helper.UnixTime.UnixTimeStamp() - 10) _token = null; // expire after 10 sec
+            if (_token != null && _token.ExpiresTime <= Helper.Ultis.UnixTimeStamp() - 10) _token = null; // expire after 10 sec
             try
             {
                 if (_token == null)
@@ -49,7 +49,7 @@ namespace WingMoney
                     try
                     {
                         _token = JsonConvert.DeserializeObject<TokenResponse>(resultJSON);
-                        if (_token.ExpiresIn != 0) _token.ExpiresTime = Helper.UnixTime.UnixTimeStamp() + _token.ExpiresIn;
+                        if (_token.ExpiresIn != 0) _token.ExpiresTime = Helper.Ultis.UnixTimeStamp() + _token.ExpiresIn;
                         return _token;
                     }
                     catch (Exception ex)

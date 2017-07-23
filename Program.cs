@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
+using System.Text.RegularExpressions;
 using WingMoney;
 using WingMoney.Auth;
 
@@ -13,6 +11,14 @@ namespace Test
     {
         static void Main(string[] args)
         {
+            string usd_string = "USD 100,000.72323";
+
+            Regex rx = new Regex(@"[0-9,]+\.[0-9]+");
+            Match m = rx.Match(usd_string); // "USD 1,000.2323"
+            float usd = 0;
+            float.TryParse(m.ToString(), out usd);
+            Console.WriteLine(usd_string);
+            Console.WriteLine(usd);
 
             do
             {

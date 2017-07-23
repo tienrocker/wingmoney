@@ -53,7 +53,7 @@
     <Compile Include="WingMoney\Bill\ValidateResponse.cs" />
     <Compile Include="WingMoney\Bill\ValidationRequest.cs" />
     <Compile Include="WingMoney\Error\ErrorResponse.cs" />
-    <Compile Include="WingMoney\Helper\UnixTime.cs" />
+    <Compile Include="WingMoney\Helper\Ultis.cs" />
     <Compile Include="WingMoney\Send\MoneyRequest.cs" />
     <Compile Include="WingMoney\Send\MoneyResponse.cs" />
     <Compile Include="WingMoney\User\BalanceResponse.cs" />
@@ -64,6 +64,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="WingMoney\Doc\Wing API - SVM.PDF" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
